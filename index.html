@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10151d"><title>TapTrack | Bar Operations Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">T</div><div><strong>TapTrack</strong><small>BAR OPERATIONS</small></div></div>
+      <nav id="sideNav">
+        <button class="nav-item active" data-page="dashboard">▦ <span>Overview</span></button>
+        <button class="nav-item" data-page="sales">＋ <span>Record a sale</span></button>
+        <button class="nav-item" data-page="inventory">▤ <span>Stock inventory</span></button>
+        <button class="nav-item" data-page="counts">☷ <span>Stock counts</span></button>
+        <button class="nav-item" data-page="reports">▥ <span>Reports</span></button>
+      </nav>
+      <div class="sidebar-note"><span class="live-dot"></span> Demo environment <small>Sample data · Local device only</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">SATURDAY, DEMO SHIFT</div><h1 id="pageTitle">Overview</h1></div><div class="user-area"><label for="bartender">Logged in as</label><select id="bartender"><option>Thabo Mokoena</option><option>Lerato Dlamini</option><option>Jason Smith</option><option>Manager</option></select><div class="avatar" id="avatar">T</div></div></header>
+      <div class="mobile-nav" id="mobileNav"><button class="active" data-page="dashboard">Overview</button><button data-page="sales">Sale</button><button data-page="inventory">Stock</button><button data-page="counts">Counts</button><button data-page="reports">Reports</button></div>
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-row"><div><h2>Good evening, <span id="welcomeName">Thabo</span>.</h2><p>Here’s what’s happening at The Corner Lounge.</p></div><span class="status-pill"><i></i> Shift active</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-label">Today's sales</span><strong id="statSales">R 0</strong><small class="positive">Recorded sales value</small></article>
+          <article class="stat-card"><span class="stat-label">Units sold</span><strong id="statUnits">0</strong><small>Drinks recorded today</small></article>
+          <article class="stat-card"><span class="stat-label">Products to watch</span><strong id="statLow">0</strong><small>At or below reorder level</small></article>
+          <article class="stat-card"><span class="stat-label">Stock discrepancy</span><strong id="statVariance">—</strong><small>Latest submitted count</small></article>
+        </div>
+        <div class="content-grid"><article class="panel"><div class="panel-head"><div><h3>Recent sales</h3><p>Latest recorded transactions</p></div><button class="text-button" data-go="sales">Record sale ↗</button></div><div class="table-wrap"><table><thead><tr><th>Product</th><th>Staff</th><th>Qty</th><th>Total</th></tr></thead><tbody id="recentSales"></tbody></table></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Stock alerts</h3><p>Items that may need attention</p></div><span class="counter" id="alertCount">0</span></div><div id="stockAlerts" class="alert-list"></div></article></div>
+        <article class="panel flow-panel"><div class="panel-head"><div><h3>How TapTrack helps</h3><p>A simple control loop for every shift</p></div></div><div class="flow"><div><b>01</b><strong>Record sales</strong><small>Attribute each sale to a bartender.</small></div><div class="flow-arrow">→</div><div><b>02</b><strong>Update stock</strong><small>Expected quantities adjust automatically.</small></div><div class="flow-arrow">→</div><div><b>03</b><strong>Count & compare</strong><small>Spot differences for follow-up.</small></div></div></article>
+      </section>
+      <section class="page" id="page-sales">
+        <div class="section-intro"><div><h2>Record a sale</h2><p>Every transaction is linked to the selected bartender.</p></div><span class="tag">LIVE DEMO</span></div>
+        <div class="content-grid sales-grid"><article class="panel"><div class="panel-head"><div><h3>New transaction</h3><p>Select a drink and enter the quantity.</p></div></div>
+          <form id="saleForm" class="form-stack"><label>Barcode / product lookup<div class="input-with-button"><input id="barcodeInput" placeholder="Scan or type e.g. 6001234500012" autocomplete="off"><button type="button" id="lookupBtn" class="secondary-btn">Find</button></div><small class="hint">Demo scanner: type a barcode and tap Find.</small></label>
+          <label>Product<select id="saleProduct" required></select></label><div class="two-col"><label>Quantity<input id="saleQty" type="number" min="1" value="1" required></label><label>Payment method<select id="salePayment"><option>Cash</option><option>Card</option><option>Other</option></select></label></div>
+          <div class="sale-total"><span>Transaction total</span><strong id="saleTotal">R 0.00</strong></div><button class="primary-btn" type="submit">＋ Record sale</button><p class="form-message" id="saleMessage"></p></form></article>
+          <article class="panel"><div class="panel-head"><div><h3>Quick product list</h3><p>Tap a product to select it.</p></div></div><div class="quick-products" id="quickProducts"></div></article></div>
+        <article class="panel"><div class="panel-head"><div><h3>Today's transactions</h3><p>Sales recorded on this device.</p></div></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Product</th><th>Bartender</th><th>Payment</th><th>Qty</th><th>Total</th></tr></thead><tbody id="salesTable"></tbody></table></div></article>
+      </section>
+      <section class="page" id="page-inventory">
+        <div class="section-intro"><div><h2>Stock inventory</h2><p>View current expected stock and record stock movements.</p></div><button class="primary-btn compact" id="openMovement">＋ Stock movement</button></div>
+        <article class="panel"><div class="toolbar"><input id="inventorySearch" placeholder="Search products or barcode…"><span class="muted" id="inventoryCount"></span></div><div class="table-wrap"><table><thead><tr><th>Product</th><th>Barcode</th><th>Unit price</th><th>Expected stock</th><th>Reorder at</th><th>Status</th></tr></thead><tbody id="inventoryTable"></tbody></table></div></article>
+        <article class="panel movement-panel" id="movementPanel"><div class="panel-head"><div><h3>Record stock movement</h3><p>Use this for deliveries, breakages, complimentary drinks or corrections.</p></div><button class="icon-button" id="closeMovement">×</button></div><form id="movementForm" class="movement-form"><label>Product<select id="movementProduct"></select></label><label>Movement type<select id="movementType"><option value="received">Stock received (+)</option><option value="breakage">Breakage (-)</option><option value="complimentary">Complimentary (-)</option><option value="adjustment">Adjustment (+/-)</option></select></label><label>Quantity<input id="movementQty" type="number" min="1" value="1" required></label><label>Note<input id="movementNote" placeholder="e.g. Supplier delivery / damaged bottle"></label><button class="primary-btn" type="submit">Save movement</button></form><p class="form-message" id="movementMessage"></p></article>
+      </section>
+      <section class="page" id="page-counts">
+        <div class="section-intro"><div><h2>Opening & closing counts</h2><p>Compare physical quantities with what the system expects.</p></div></div>
+        <div class="content-grid"><article class="panel"><div class="panel-head"><div><h3>Start or end a shift count</h3><p>Enter the physical quantity currently on hand.</p></div></div><form id="countForm" class="form-stack"><label>Count type<select id="countType"><option value="opening">Opening count</option><option value="closing">Closing count</option></select></label><label>Product<select id="countProduct"></select></label><label>Physical quantity<input id="physicalQty" type="number" min="0" value="0" required></label><div class="count-preview" id="countPreview">System expected: —</div><button class="primary-btn" type="submit">Save count</button><p class="form-message" id="countMessage"></p></form></article>
+          <article class="panel"><div class="panel-head"><div><h3>Latest count results</h3><p>Variance is physical count minus expected stock.</p></div></div><div id="countSummary" class="count-summary"></div></article></div>
+        <article class="panel"><div class="panel-head"><div><h3>Count history</h3><p>Saved counts and their variances.</p></div></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Type</th><th>Product</th><th>Expected</th><th>Physical</th><th>Variance</th><th>Counted by</th></tr></thead><tbody id="countTable"></tbody></table></div></article>
+      </section>
+      <section class="page" id="page-reports">
+        <div class="section-intro"><div><h2>Sales & stock report</h2><p>A quick view of recorded sales and stock variances.</p></div><button class="secondary-btn" id="resetDemo">Reset demo data</button></div>
+        <div class="stats-grid report-stats"><article class="stat-card"><span class="stat-label">Total recorded revenue</span><strong id="reportRevenue">R 0</strong><small>All demo transactions</small></article><article class="stat-card"><span class="stat-label">Total units sold</span><strong id="reportUnits">0</strong><small>Across all products</small></article><article class="stat-card"><span class="stat-label">Stock movements</span><strong id="reportMovements">0</strong><small>Receipts and adjustments</small></article><article class="stat-card"><span class="stat-label">Count variances</span><strong id="reportVariances">0</strong><small>Non-zero submitted variances</small></article></div>
+        <div class="content-grid"><article class="panel"><div class="panel-head"><div><h3>Sales by bartender</h3><p>Based on recorded transactions.</p></div></div><div id="staffReport" class="bar-list"></div></article><article class="panel"><div class="panel-head"><div><h3>Stock discrepancy summary</h3><p>Latest count per product.</p></div></div><div class="table-wrap"><table><thead><tr><th>Product</th><th>Expected</th><th>Physical</th><th>Variance</th></tr></thead><tbody id="varianceTable"></tbody></table></div></article></div>
+        <article class="panel"><div class="panel-head"><div><h3>Important note</h3></div></div><p class="note-text">A discrepancy is a signal to investigate, not proof of theft. Accurate results depend on recording all sales, deliveries, breakages, complimentary drinks and other stock movements.</p></article>
+      </section>
+      <footer>TapTrack demo · Sample data only · Changes are saved in this browser</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div><script src="app.js"></script>
+</body></html>

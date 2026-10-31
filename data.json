@@ -1,0 +1,15 @@
+{
+  "barName": "The Corner Lounge",
+  "staff": ["Thabo Mokoena", "Lerato Dlamini", "Jason Smith", "Manager"],
+  "products": [
+    {"id":"p1","name":"Castle Lager 340ml","category":"Beer","barcode":"6001234500012","price":25,"stock":48,"reorder":12},
+    {"id":"p2","name":"Heineken 330ml","category":"Beer","barcode":"6001234500029","price":30,"stock":36,"reorder":12},
+    {"id":"p3","name":"Black Label 340ml","category":"Beer","barcode":"6001234500036","price":27,"stock":30,"reorder":10},
+    {"id":"p4","name":"Savanna Dry 330ml","category":"Cider","barcode":"6001234500043","price":32,"stock":24,"reorder":8},
+    {"id":"p5","name":"Smirnoff 1818 Vodka 750ml","category":"Spirits","barcode":"6001234500050","price":35,"stock":8,"reorder":4},
+    {"id":"p6","name":"Coca-Cola 300ml","category":"Soft drinks","barcode":"6001234500067","price":18,"stock":20,"reorder":8},
+    {"id":"p7","name":"Red Bull 250ml","category":"Energy","barcode":"6001234500074","price":28,"stock":6,"reorder":6},
+    {"id":"p8","name":"Jameson 750ml","category":"Spirits","barcode":"6001234500081","price":45,"stock":5,"reorder":3}
+  ],
+  "sales": [], "movements": [], "counts": []
+}
